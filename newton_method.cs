@@ -233,6 +233,8 @@ namespace matematica2
 
         public static Matrix Solution(int k)
         {
+
+            // k - число иттераций до перехода на модифицированный алгоритм
             Matrix x = Matrix.ZeroMatrix(10, 1);
             int iterator = 0;
             x.mat[0, 0] = 0.5;

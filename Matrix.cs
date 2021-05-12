@@ -209,7 +209,7 @@ namespace matematica2
         }
 
 
-        public static Matrix StupidMultiply(Matrix m1, Matrix m2)
+        public static Matrix Multiply(Matrix m1, Matrix m2)
         {
 
             Matrix result = ZeroMatrix(m1.rows, m2.cols);
@@ -343,71 +343,10 @@ namespace matematica2
 
 
 
-        public static Matrix jacobi(Matrix a, Matrix d, Matrix c, Matrix b, Matrix x, int iterator, Matrix mat_b)
-        {
-            iterator++;
-            Matrix x2 = new Matrix(x.rows, x.cols);
-            if (Matrix.equal(x, Matrix.ZeroMatrix(x.rows, x.cols)))
-            {
-
-                x2 = Matrix.StupidMultiply(d.Invert(), b);
-                return jacobi(a, d, c, b, x2, iterator, mat_b);
-            }
-            else
-            {
-
-                x2 = Matrix.StupidMultiply(mat_b, x) + c;
-            }
-
-            if ((norma(x2 - x)) < Math.Pow(10, -6) * ((1 - norma(mat_b)) / norma(mat_b)))
-                return x2;
-            return jacobi(a, d, c, b, x2, iterator, mat_b);
-
-        }
+       
 
 
-        public static Matrix seidel(Matrix bl, Matrix bdr, Matrix c, Matrix x, Matrix mat_b, int iterator, Matrix l, Matrix d, Matrix r)
-        {
-            iterator++;
-            List<double> solution = new List<double>();
-            if (Matrix.equal(x, Matrix.ZeroMatrix(x.rows, x.cols)))
-            {
-                x = c;
-                Matrix ld = l + d;
-
-            }
-            for (int i = 0; i < mat_b.rows; i++)
-            {
-                double x2 = 0;
-                for (int j = 0; j < mat_b.cols; j++)
-                {
-                    try
-                    {
-                        x2 = x2 + (solution[j] * mat_b[i, j]);
-                    }
-                    catch
-                    {
-                        x2 = x2 + x.mat[j, 0] * mat_b[i, j];
-                    }
-                }
-                x2 = x2 + c.mat[i, 0];
-                solution.Add(x2);
-
-            }
-
-
-
-            Matrix solution2 = new Matrix(solution.Count, 1);
-            for (int i = 0; i < solution.Count; i++)
-            {
-                solution2.mat[i, 0] = solution[i];
-            }
-
-            if (norma(solution2 - x) < Math.Pow(10, -6) * (1 - norma(mat_b)) / norma(bdr))
-                return solution2;
-            return seidel(bl, bdr, c, solution2, mat_b, iterator, l, d, r);
-
-        }
+        
 
 
 
@@ -429,10 +368,10 @@ namespace matematica2
                     q_temp.mat[j, i] = s;
                     q_temp.mat[j, j] = c;
                     q_temp.mat[i, j] = -s;
-                    R = StupidMultiply(q_temp, R);
+                    R = Multiply(q_temp, R);
                     q_temp.mat[i, j] = s;
                     q_temp.mat[j, i] = -s;
-                    Q = StupidMultiply(Q, q_temp);
+                    Q = Multiply(Q, q_temp);
 
                 }
         }

@@ -15,10 +15,10 @@ namespace matematica2
             A.MakeLU();
             Show(A.L.mat, "L:");
             Show(A.U.mat, "U:");
-            Show(Matrix.StupidMultiply(A.L, A.U).mat, "LU=");
-            Console.WriteLine("Det(LU)={0}", Matrix.StupidMultiply(A.L, A.U).Det());
-            Show(Matrix.StupidMultiply(A.GetP(), A).mat, "AP=");
-            Console.WriteLine("Det(PA)={0}", Matrix.StupidMultiply(A.GetP(), A).Det());
+            Show(Matrix.Multiply(A.L, A.U).mat, "LU=");
+            Console.WriteLine("Det(LU)={0}", Matrix.Multiply(A.L, A.U).Det());
+            Show(Matrix.Multiply(A.GetP(), A).mat, "AP=");
+            Console.WriteLine("Det(PA)={0}", Matrix.Multiply(A.GetP(), A).Det());
 
 
             Console.WriteLine("--------------------------------------------------------------------");
@@ -54,8 +54,8 @@ namespace matematica2
             Matrix b = Matrix.RandomMatrix(n, 1, 10);
             Show(A.mat, "A:");
             A.QR_solution();
-            Show(Matrix.StupidMultiply(A.Q, A.R).mat, "QR=");
-            Show(A.R.SolveWith(Matrix.StupidMultiply(A.Q.Transp(), b)).mat, n, 1, "x:");
+            Show(Matrix.Multiply(A.Q, A.R).mat, "QR=");
+            Show(A.R.SolveWith(Matrix.Multiply(A.Q.Transp(), b)).mat, n, 1, "x:");
 
 
 
@@ -63,162 +63,13 @@ namespace matematica2
 
         public static void fourv1()
         {
-            Matrix A = Matrix.RandomMatrix(n, n, 10);
-            Matrix b = Matrix.RandomMatrix(n, 1, 10);
-            double[,] numsA = new double[,] { { 88, 5, 5, 7 }, { 1, 77, 2, 5 }, { 8, 1, 88, 2 }, { 1, 2, 3, 88 } };
-            double[,] numsB = new double[,] { { 7 }, { 1 }, { 3 }, { 2 } };
-            A.mat = numsA;
-            b.mat = numsB;
-
-
-
-            Show(A.mat, "A:");
-            Show(b.mat, n, 1, "b:");
-
-
-            Matrix d = Matrix.ZeroMatrix(n, n);
-
-
-            for (int i = 0; i < n; i++)
-            {
-                d.mat[i, i] = A.mat[i, i];
-            }
-            Matrix c = Matrix.StupidMultiply(d.Invert(), b);
-            Matrix mat_d = new Matrix(n, n);
-            Matrix mat_r = new Matrix(n, n);
-            Matrix mat_l = new Matrix(n, n);
-            for (int i = 0; i < n; i++)
-            {
-                if (i == 0)
-                {
-                    mat_d[i, i] = A[i, i];
-                    for (int j = i + 1; j < n; j++)
-                    {
-                        mat_r[i, j] = A[i, j];
-                    }
-                }
-                else
-                {
-                    for (int j = 0; j < i; j++)
-                    {
-                        mat_l[i, j] = A[i, j];
-                    }
-
-                    mat_d[i, i] = A[i, i];
-
-                    for (int j = i + 1; j < n; j++)
-                    {
-                        mat_r[i, j] = A[i, j];
-                    }
-
-                }
-            }
-
-
-            Matrix mat_b = -Matrix.StupidMultiply(mat_d.Invert(), (mat_l + mat_r));
-
-
-
-            Matrix x = Matrix.jacobi(A, d, c, b, Matrix.ZeroMatrix(1, n), 0, mat_b);
-            Show(x.mat, x.rows, x.cols, "x:");
-
-
-
+            jacobi_method.Solution();
         }
 
 
         public static void fourv2()
         {
-            Matrix A = Matrix.RandomMatrix(n, n, 10);
-            Matrix b = Matrix.RandomMatrix(n, 1, 10);
-            double[,] numsA = new double[,] { { 88, 5, 5, 7 }, { 1, 77, 2, 5 }, { 8, 1, 88, 2 }, {1, 2, 3, 88 } };
-            double[,] numsB = new double[,] { { 7 }, { 1 }, { 3 }, { 2 } };
-            A.mat = numsA;
-            b.mat = numsB;
-
-
-            Show(A.mat, "A:");
-            Show(b.mat, n, 1, "b:");
-
-            Matrix mat_d = new Matrix(n, n);
-            Matrix mat_r = new Matrix(n, n);
-            Matrix mat_l = new Matrix(n, n);
-            for (int i = 0; i < n; i++)
-            {
-                if (i == 0)
-                {
-                    mat_d[i, i] = A[i, i];
-                    for (int j = i + 1; j < n; j++)
-                    {
-                        mat_r[i, j] = A[i, j];
-                    }
-
-
-                }
-                else
-                {
-                    for (int j = 0; j < i; j++)
-                    {
-                        mat_l[i, j] = A[i, j];
-                    }
-
-                    mat_d[i, i] = A[i, i];
-
-
-                    for (int j = i + 1; j < n; j++)
-                    {
-                        mat_r[i, j] = A[i, j];
-                    }
-
-                }
-            }
-
-
-            Matrix mat_b = -Matrix.StupidMultiply(mat_d.Invert(), (mat_l + mat_r));
-
-
-            Matrix d = Matrix.ZeroMatrix(n, n);
-            for (int i = 0; i < n; i++)
-            {
-                d.mat[i, i] = A.mat[i, i];
-            }
-            Matrix c = Matrix.StupidMultiply(d.Invert(), b);
-
-
-
-
-
-            Matrix mat_bl = new Matrix(n, n);
-            Matrix mat_bdr = new Matrix(n, n);
-
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < i; j++)
-                {
-                    mat_bl.mat[i, j] = mat_b[i, j];
-                }
-
-                for (int j = i; j < n; j++)
-                {
-                    mat_bdr.mat[i, j] = mat_b[i, j];
-                }
-
-            }
-
-
-            Matrix x = Matrix.seidel(mat_bl, mat_bdr, c, Matrix.ZeroMatrix(n, 1), mat_b, 0, mat_l, mat_d, mat_r);
-
-            Show(x.mat, x.rows, x.cols, "x:");
-
-
-
-
-
-
-
-
-
-
+            seidel_method.Solution();
         }
 
         public static void Show(double[,] arr, string name)
@@ -280,12 +131,12 @@ namespace matematica2
         static void Main(string[] args)
         {
 
-            //one();
-            //two();
-            //three();
-            //fourv1();
-            //fourv2();
-            
+            one();
+            two();
+            three();
+            fourv1();
+            fourv2();
+
             Show(newton_method.Solution(0).mat, 10, 1, "Решение методом Ньютона:");
             
 
