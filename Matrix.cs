@@ -109,6 +109,24 @@ namespace matematica2
             return x;
         }
 
+        public Matrix SolveWith(Matrix v, ref int iterator)
+        {
+
+            if (L == null) MakeLU();
+
+            Matrix b = new Matrix(rows, 1);
+            for (int i = 0; i < rows; i++)
+            {
+                iterator++;
+                b[i, 0] = v[pi[i], 0];
+            }
+
+            Matrix z = SubsForth(L, b , ref iterator);
+            Matrix x = SubsBack(U, z, ref iterator);
+
+            return x;
+        }
+
         public void SetCol(Matrix v, int k)
         {
             for (int i = 0; i < rows; i++) mat[i, k] = v[i, 0];
@@ -172,6 +190,22 @@ namespace matematica2
             return x;
         }
 
+        public static Matrix SubsForth(Matrix A, Matrix b, ref int iterator)
+        {
+            if (A.L == null) A.MakeLU();
+            int n = A.rows;
+            Matrix x = new Matrix(n, 1);
+
+            for (int i = 0; i < n; i++)
+            {
+                x[i, 0] = b[i, 0];
+                for (int j = 0; j < i; j++) x[i, 0] -= A[i, j] * x[j, 0];
+                x[i, 0] = x[i, 0] / A[i, i];
+                iterator = iterator + 3;
+            }
+            return x;
+        }
+
         public static Matrix SubsBack(Matrix A, Matrix b)
         {
             if (A.L == null) A.MakeLU();
@@ -183,6 +217,22 @@ namespace matematica2
                 x[i, 0] = b[i, 0];
                 for (int j = n - 1; j > i; j--) x[i, 0] -= A[i, j] * x[j, 0];
                 x[i, 0] = x[i, 0] / A[i, i];
+            }
+            return x;
+        }
+
+        public static Matrix SubsBack(Matrix A, Matrix b, ref int iterator)
+        {
+            if (A.L == null) A.MakeLU();
+            int n = A.rows;
+            Matrix x = new Matrix(n, 1);
+
+            for (int i = n - 1; i > -1; i--)
+            {
+                x[i, 0] = b[i, 0];
+                for (int j = n - 1; j > i; j--) x[i, 0] -= A[i, j] * x[j, 0];
+                x[i, 0] = x[i, 0] / A[i, i];
+                iterator = iterator +3;
             }
             return x;
         }

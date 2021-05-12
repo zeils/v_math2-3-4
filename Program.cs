@@ -131,13 +131,17 @@ namespace matematica2
         static void Main(string[] args)
         {
 
-            one();
-            two();
-            three();
-            fourv1();
-            fourv2();
+            //one();
+            //two();
+            //three();
+            //fourv1();
+            //fourv2();
 
-            Show(newton_method.Solution(0).mat, 10, 1, "Решение методом Ньютона:");
+            newton_method.Solution(0);
+
+
+
+           
             
 
 

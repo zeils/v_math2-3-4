@@ -231,9 +231,9 @@ namespace matematica2
 
         public static double eps = Math.Pow(10, -6);
 
-        public static Matrix Solution(int k)
+        public static void Solution(int k)
         {
-
+            int counter = 0; // число операций при решении
             // k - число иттераций до перехода на модифицированный алгоритм
             Matrix x = Matrix.ZeroMatrix(10, 1);
             int iterator = 0;
@@ -243,15 +243,20 @@ namespace matematica2
             x.mat[3, 0] = -1.0;
             x.mat[4, 0] = -0.5;
             x.mat[5, 0] = 1.5;
+            //x.mat[5, 0] = -0.2;
             x.mat[6, 0] = 0.5;
             x.mat[7, 0] = -0.5;
             x.mat[8, 0] = 1.5;
             x.mat[9, 0] = -1.5;
-            return Calculate(x, ref iterator, x, k);
+            x = Calculate(x, ref iterator, x, k, ref counter);
+
+            Program.Show(x.mat, 10, 1, "Решение методом Ньютона:");
+            Console.WriteLine("операций: {0}", counter);
             
+
         }
 
-        public static Matrix Calculate(Matrix x, ref int iterator, Matrix x0, int k)
+        public static Matrix Calculate(Matrix x, ref int iterator, Matrix x0, int k, ref int counter)
         {
             iterator++;
             Matrix nextX = Matrix.ZeroMatrix(10, 1);
@@ -261,29 +266,25 @@ namespace matematica2
                 x0 = x;
             }
                 Jacobi_mat j = new Jacobi_mat(x0);
-            // k = 1
-            // iter 1 , 
 
-            
-             // v1
             Function f = new Function(x);
-            deltaX = j.J.SolveWith(-f.F);
+            deltaX = j.J.SolveWith(-f.F, ref counter);
             nextX = x + deltaX; // x(k+1) = deltaX + x(k)
 
 
 
-            // x(k+1) = x(k) + J^-1(x0)*F(x(k))
+            // x(k+1) = x(k) + J^-1(x0)*F(x(k)) 
             // x(k+1) - x(k) = delta(x)
             // delta(x) = J^-1(x0)*F(x(k))
             // J(x0) *delta(x) = F(x(k))
 
 
-            
-            Console.WriteLine("--------------------------------------------------------------------------}");
-            Console.WriteLine("iterator = {0}", iterator);
-            Program.Show(x.mat, 10, 1, "x=");
-            Program.Show(deltaX.mat, 10, 1, "Delta");
-            Console.WriteLine("--------------------------------------------------------------------------}");
+            //// для проверки
+            //Console.WriteLine("--------------------------------------------------------------------------}");
+            //Console.WriteLine("iterator = {0}", iterator);
+            //Program.Show(x.mat, 10, 1, "x=");
+            //Program.Show(deltaX.mat, 10, 1, "Delta");
+            //Console.WriteLine("--------------------------------------------------------------------------}");
 
 
             if (Check(x, nextX))
@@ -291,22 +292,7 @@ namespace matematica2
                
                 return nextX;
             }
-            return Calculate(nextX, ref iterator,x0,k);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            return Calculate(nextX, ref iterator,x0,k, ref counter);
 
         }
 
@@ -329,24 +315,6 @@ namespace matematica2
             }
 
         }
-
-       
-
-
-       
-        
-
-        
-        
-
-      
-        
-        
-    
-
-
-
-
 
     }
 }
