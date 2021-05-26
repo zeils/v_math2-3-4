@@ -89,6 +89,7 @@ namespace matematica2
             Matrix x = seidel(mat_bl, mat_bdr, c, Matrix.ZeroMatrix(n, 1), mat_b, 0, mat_l, mat_d, mat_r);
 
             Program.Show(x.mat, x.rows, x.cols, "x:");
+            Program.Show((A.SolveWith(b) - x).mat, x.rows, x.cols, "выч");
         }
 
 

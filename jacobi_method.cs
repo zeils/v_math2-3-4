@@ -18,6 +18,8 @@ namespace matematica2
             b.mat = numsB;
 
 
+            Program.Show(A.SolveWith(b).mat, n, 1, "solved Ax=b:");
+
 
             Program.Show(A.mat, "A:");
             Program.Show(b.mat, n, 1, "b:");
@@ -68,7 +70,7 @@ namespace matematica2
 
             Matrix x = jacobi(A, d, c, b, Matrix.ZeroMatrix(1, n), 0, mat_b);
             Program.Show(x.mat, x.rows, x.cols, "x:");
-
+            Program.Show((A.SolveWith(b)- x).mat, x.rows, x.cols, "выч");
 
         }
 

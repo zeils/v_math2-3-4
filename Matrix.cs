@@ -113,6 +113,7 @@ namespace matematica2
         {
 
             if (L == null) MakeLU();
+            iterator = iterator = 3* this.cols * this.cols * this.cols;
 
             Matrix b = new Matrix(rows, 1);
             for (int i = 0; i < rows; i++)
@@ -201,7 +202,7 @@ namespace matematica2
                 x[i, 0] = b[i, 0];
                 for (int j = 0; j < i; j++) x[i, 0] -= A[i, j] * x[j, 0];
                 x[i, 0] = x[i, 0] / A[i, i];
-                iterator = iterator + 3;
+                iterator = iterator + i;
             }
             return x;
         }
@@ -232,7 +233,7 @@ namespace matematica2
                 x[i, 0] = b[i, 0];
                 for (int j = n - 1; j > i; j--) x[i, 0] -= A[i, j] * x[j, 0];
                 x[i, 0] = x[i, 0] / A[i, i];
-                iterator = iterator +3;
+                iterator = iterator + i +1;
             }
             return x;
         }
@@ -255,6 +256,7 @@ namespace matematica2
             for (int i = 0; i < iRows; i++)
                 for (int j = 0; j < iCols; j++)
                     matrix[i, j] = random.Next(-dispersion, dispersion);
+            
             return matrix;
         }
 
@@ -321,26 +323,63 @@ namespace matematica2
         public double Rank()
         {
 
-            double rank = rows;
-            bool d = true;
-            for (int i = 0; i < rows; i++)
+            int n = rows;
+            int i = 1;
+            int j = 1;
+            int f = 0;
+            int rank = 0;
+            while (i<n)
             {
-                for (int j = 0; j < cols; j++)
+                if (this.mat[i,j] != 0)
                 {
-                    if (this.mat[i, j] != 0)
+                    i++;
+                    rank = i - 1;
+                }
+                else
+                {
+                    if(f==0)
                     {
-                        d = false;
-                        break;
+                        f = 1;
+                        this.mat[j, n] = this.mat[n, j];
+                    }
+                    else
+                    {
+                        f = 0;
+                        rank = i - 1;
+                        j++;
                     }
                 }
-                if (d) rank--;
-                else break;
 
             }
 
 
 
             return rank;
+        }
+
+        public static void CheckRank()
+        {
+            Matrix nums = new Matrix(3, 3);
+            
+            nums[0, 0] = 1;
+            nums[0, 1] = 2;
+            nums[0, 2] = 3;
+
+            nums[1, 0] = 3;
+            nums[1, 1] = 2;
+            nums[1, 2] = 1;
+
+            nums[2, 0] = 4;
+            nums[2, 1] = 4;
+            nums[2, 2] = 4;
+
+            Console.WriteLine(nums.Rank());
+
+
+
+
+
+
         }
 
         public static double norma(Matrix a)
@@ -438,6 +477,7 @@ namespace matematica2
 
         public static Matrix operator -(Matrix m1, Matrix m2)
         { return Matrix.Add(m1, -m2); }
+
 
 
 

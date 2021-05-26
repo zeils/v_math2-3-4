@@ -1,4 +1,5 @@
 ﻿using System;
+using vMath2;
 namespace matematica2
 {
     class Program
@@ -17,7 +18,7 @@ namespace matematica2
             Show(A.U.mat, "U:");
             Show(Matrix.Multiply(A.L, A.U).mat, "LU=");
             Console.WriteLine("Det(LU)={0}", Matrix.Multiply(A.L, A.U).Det());
-            Show(Matrix.Multiply(A.GetP(), A).mat, "AP=");
+            Show(Matrix.Multiply(A.GetP(), A).mat, "PA=");
             Console.WriteLine("Det(PA)={0}", Matrix.Multiply(A.GetP(), A).Det());
 
 
@@ -135,14 +136,18 @@ namespace matematica2
             //two();
             //three();
             //fourv1();
+            //Console.WriteLine("---------");
             //fourv2();
 
-            newton_method.Solution(0);
+            // newton_method.Solution(3);
+
+            newton_cottes.Solution();
+
+            Matrix.CheckRank();
 
 
 
-           
-            
+
 
 
         }

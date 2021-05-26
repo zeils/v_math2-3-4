@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MS_PC\\Desktop\\максим\\vMath2\\v_math2-3-4\\vMath2.csproj",
+      "projectUniqueName": "C:\\Users\\MS_PC\\Desktop\\вычмат\\vMath2\\v_math2-3-4\\vMath2.csproj",
       "projectName": "vMath2",
-      "projectPath": "C:\\Users\\MS_PC\\Desktop\\максим\\vMath2\\v_math2-3-4\\vMath2.csproj",
+      "projectPath": "C:\\Users\\MS_PC\\Desktop\\вычмат\\vMath2\\v_math2-3-4\\vMath2.csproj",
       "packagesPath": "C:\\Users\\MS_PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MS_PC\\Desktop\\максим\\vMath2\\v_math2-3-4\\obj\\",
+      "outputPath": "C:\\Users\\MS_PC\\Desktop\\вычмат\\vMath2\\v_math2-3-4\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

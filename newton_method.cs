@@ -233,6 +233,7 @@ namespace matematica2
 
         public static void Solution(int k)
         {
+            int period = 0;
             int counter = 0; // число операций при решении
             // k - число иттераций до перехода на модифицированный алгоритм
             Matrix x = Matrix.ZeroMatrix(10, 1);
@@ -243,28 +244,37 @@ namespace matematica2
             x.mat[3, 0] = -1.0;
             x.mat[4, 0] = -0.5;
             x.mat[5, 0] = 1.5;
-            //x.mat[5, 0] = -0.2;
+            //x.mat[4, 0] = -0.2;
             x.mat[6, 0] = 0.5;
             x.mat[7, 0] = -0.5;
             x.mat[8, 0] = 1.5;
             x.mat[9, 0] = -1.5;
-            x = Calculate(x, ref iterator, x, k, ref counter);
+            x = Calculate(x, ref iterator, x, k, ref counter, ref period);
 
             Program.Show(x.mat, 10, 1, "Решение методом Ньютона:");
             Console.WriteLine("операций: {0}", counter);
+            Console.WriteLine("иттераций: {0}", iterator);
             
 
         }
 
-        public static Matrix Calculate(Matrix x, ref int iterator, Matrix x0, int k, ref int counter)
+        public static Matrix Calculate(Matrix x, ref int iterator, Matrix x0, int k, ref int counter, ref int period)
         {
+            // обычн 0 
+            // модиф 1
+            // модиф 2
+            // модиф 3
+            // обыч 
+
             iterator++;
             Matrix nextX = Matrix.ZeroMatrix(10, 1);
             Matrix deltaX = Matrix.ZeroMatrix(10, 1);
-            if (iterator <= k)
+            if ((iterator <= k) && (period == 0))
             {
                 x0 = x;
             }
+            period++;
+            if (period > 3) period = 0;
                 Jacobi_mat j = new Jacobi_mat(x0);
 
             Function f = new Function(x);
@@ -292,7 +302,8 @@ namespace matematica2
                
                 return nextX;
             }
-            return Calculate(nextX, ref iterator,x0,k, ref counter);
+            //if (iterator > 15) return Matrix.Eye(x.cols);
+            return Calculate(nextX, ref iterator,x0,k, ref counter, ref period);
 
         }
 
