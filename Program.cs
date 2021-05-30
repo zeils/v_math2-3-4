@@ -141,9 +141,9 @@ namespace matematica2
 
             // newton_method.Solution(3);
 
-            newton_cottes.Solution();
+            newton_cottes.Solution_newton_cottes();
 
-            Matrix.CheckRank();
+            //Matrix.CheckRank();
 
 
 
