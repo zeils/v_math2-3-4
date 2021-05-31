@@ -75,17 +75,12 @@ namespace matematica2
         private static double alpha = 0.2;
         private static double beta = 0;
 
-        //private static double a = 0.1;
-        //private static double b = 2.3;
-        //private static double alpha = 0.2;
-        //private static double beta = 0;
-
 
 
 
 
         private static double exact_value = 32.21951452884234295708696008290380201405;
-        //private static double exact_value = 3.578861536040539915439859609644293194417;
+        
 
 
         private static double[,] A;
@@ -259,7 +254,7 @@ namespace matematica2
                     if ((Math.Abs(s[s.Count - 1] - exact_value) > Math.Abs(s[s.Count - 2] - exact_value)))
                     {
                         hopt = k / L;
-                        //Console.WriteLine("Расхождение");
+                        
                         break;
                     }
                 }
@@ -309,7 +304,7 @@ namespace matematica2
         {
             double f;
             f = 2 * Math.Cos(3.5 * x) * Math.Exp(5 * x / 3) + 3 * Math.Sin(1.5 * x) * Math.Exp(-4 * x) + 3;
-            //f = 2.5 * Math.Cos(2 * x) * Math.Exp(2 * x / 3) + 4 * Math.Sin(3.5 * x) * Math.Exp(-3 * x) + 3 * x;
+           
             return f;
 
         }
@@ -366,10 +361,7 @@ namespace matematica2
         }
         private static double gaus(double x0, double xn, int k)
         {
-            //    private static double a = 0.1;
-            //private static double b = 2.3;
-            //private static double alpha = 0.2;
-            //private static double beta = 0;
+      
             double[] m = new double[2 * k];
             m[0] = (Math.Pow(xn - a, 1 - alpha) - Math.Pow(x0 - a, 1 - alpha)) / (1 - alpha);
             m[1] = (Math.Pow(xn - a, 2 - alpha) - Math.Pow(x0 - a, 2 - alpha)) / (2 - alpha) + a * m[0];
@@ -443,14 +435,6 @@ namespace matematica2
             //MathNet.Numerics.LinearAlgebra.Vector<System.Numerics.Complex> mat_b = MathNet.Numerics.LinearAlgebra.Vector<System.Numerics.Complex>.Build.Dense(new System.Numerics.Complex[] { m[0], m[1], m[2] });
 
             //var coef = matr.Solve(mat_b);
-
-
-
-
-
-
-
-
 
             Matrix coef = matr.SolveWith(mat_b);
             double sum = 0;
