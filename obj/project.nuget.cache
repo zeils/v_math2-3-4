@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "IBFwuNeUNajaayGfOB2gDhzMce9MRw3ZZ8oHi1tz5eMG5bSUEpiml+K1yFsIyGXBd+Xj0wNPq28oyTmDPlqsWg==",
+  "dgSpecHash": "JnzEpu+HlSbi8iNnwRkLP1JHsImy5nmodgQx+K4PFscaUl7HnyJpPjVFLRSuCOtlFkktWHN91piVFS4M6ufsrw==",
   "success": true,
   "projectFilePath": "C:\\Users\\MS_PC\\Desktop\\вычмат\\vMath2\\v_math2-3-4\\vMath2.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\MS_PC\\.nuget\\packages\\mathnet.numerics\\4.15.0\\mathnet.numerics.4.15.0.nupkg.sha512"
+  ],
   "logs": []
 }

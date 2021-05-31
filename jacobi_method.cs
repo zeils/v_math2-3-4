@@ -7,22 +7,22 @@ namespace matematica2
 {
     class jacobi_method
     {
-        public static void Solution()
+        public static void Solution(double[,] numsA, double[,] numsB)
         {
             int n = 4;
             Matrix A = Matrix.RandomMatrix(n, n, 10);
             Matrix b = Matrix.RandomMatrix(n, 1, 10);
-            double[,] numsA = new double[,] { { 88, 5, 5, 7 }, { 1, 77, 2, 5 }, { 8, 1, 88, 2 }, { 1, 2, 3, 88 } };
-            double[,] numsB = new double[,] { { 7 }, { 1 }, { 3 }, { 2 } };
+            //double[,] numsA = new double[,] { { 88, 5, 5, 7 }, { 1, 77, 2, 5 }, { 8, 1, 88, 2 }, { 1, 2, 3, 88 } };
+            //double[,] numsB = new double[,] { { 7 }, { 1 }, { 3 }, { 2 } };
             A.mat = numsA;
             b.mat = numsB;
 
 
-            Program.Show(A.SolveWith(b).mat, n, 1, "solved Ax=b:");
+            //Program.Show(A.SolveWith(b).mat, n, 1, "solved Ax=b:");
 
 
-            Program.Show(A.mat, "A:");
-            Program.Show(b.mat, n, 1, "b:");
+           // Program.Show(A.mat, "A:");
+            //Program.Show(b.mat, n, 1, "b:");
 
 
             Matrix d = Matrix.ZeroMatrix(n, n);
@@ -69,8 +69,9 @@ namespace matematica2
 
 
             Matrix x = jacobi(A, d, c, b, Matrix.ZeroMatrix(1, n), 0, mat_b);
-            Program.Show(x.mat, x.rows, x.cols, "x:");
-            Program.Show((A.SolveWith(b)- x).mat, x.rows, x.cols, "выч");
+            //Program.Show(x.mat, x.rows, x.cols, "x:");
+            //Program.Show((A.SolveWith(b)- x).mat, x.rows, x.cols, "выч");
+            //return x;
 
         }
 

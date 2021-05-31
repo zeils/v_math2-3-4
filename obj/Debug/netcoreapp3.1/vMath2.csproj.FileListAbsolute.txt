@@ -37,3 +37,5 @@ C:\Users\MS_PC\Desktop\вычмат\vMath2\v_math2-3-4\obj\Debug\netcoreapp3.1\v
 C:\Users\MS_PC\Desktop\вычмат\vMath2\v_math2-3-4\obj\Debug\netcoreapp3.1\vMath2.dll
 C:\Users\MS_PC\Desktop\вычмат\vMath2\v_math2-3-4\obj\Debug\netcoreapp3.1\vMath2.pdb
 C:\Users\MS_PC\Desktop\вычмат\vMath2\v_math2-3-4\obj\Debug\netcoreapp3.1\vMath2.genruntimeconfig.cache
+C:\Users\MS_PC\Desktop\вычмат\vMath2\v_math2-3-4\bin\Debug\netcoreapp3.1\MathNet.Numerics.dll
+C:\Users\MS_PC\Desktop\вычмат\vMath2\v_math2-3-4\obj\Debug\netcoreapp3.1\vMath2.csproj.CopyComplete

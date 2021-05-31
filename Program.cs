@@ -1,5 +1,5 @@
 ﻿using System;
-using vMath2;
+
 namespace matematica2
 {
     class Program
@@ -64,7 +64,7 @@ namespace matematica2
 
         public static void fourv1()
         {
-            jacobi_method.Solution();
+            //jacobi_method.Solution();
         }
 
 
@@ -141,7 +141,7 @@ namespace matematica2
 
             // newton_method.Solution(3);
 
-            newton_cottes.Solution_newton_cottes();
+            Task4.Solution();
 
             //Matrix.CheckRank();
 
